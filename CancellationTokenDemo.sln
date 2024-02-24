@@ -2,6 +2,12 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CancellationTokenDemo", "CancellationTokenDemo\CancellationTokenDemo.csproj", "{56C8586C-2350-442A-A8BD-8B3DD757E093}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ApiPrincipal", "ApiPrincipal", "{F17B8134-EA93-44A3-9A23-8879C30FB858}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ApiExterna", "ApiExterna", "{D58CB99C-09EA-406A-AE3A-88B7F2B31583}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ApiExterna", "ApiExterna\ApiExterna\ApiExterna.csproj", "{6C6465AF-9F32-47AD-9233-7288BD498E23}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -12,5 +18,13 @@ Global
 		{56C8586C-2350-442A-A8BD-8B3DD757E093}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{56C8586C-2350-442A-A8BD-8B3DD757E093}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{56C8586C-2350-442A-A8BD-8B3DD757E093}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6C6465AF-9F32-47AD-9233-7288BD498E23}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6C6465AF-9F32-47AD-9233-7288BD498E23}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6C6465AF-9F32-47AD-9233-7288BD498E23}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6C6465AF-9F32-47AD-9233-7288BD498E23}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{56C8586C-2350-442A-A8BD-8B3DD757E093} = {F17B8134-EA93-44A3-9A23-8879C30FB858}
+		{6C6465AF-9F32-47AD-9233-7288BD498E23} = {D58CB99C-09EA-406A-AE3A-88B7F2B31583}
 	EndGlobalSection
 EndGlobal

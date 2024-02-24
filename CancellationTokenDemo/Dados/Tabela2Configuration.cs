@@ -16,7 +16,7 @@ public class Tabela2Configuration : IEntityTypeConfiguration<Tabela2>
             .HasColumnName("id");
 
         builder
-            .Property(t => t.QuantidadeDeContas)
+            .Property(t => t.QuantidadeCadastrada)
             .HasColumnName("quantidade_conta")
             .HasColumnType("int");
     }
