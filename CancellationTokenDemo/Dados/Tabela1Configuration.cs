@@ -16,8 +16,8 @@ public class Tabela1Configuration : IEntityTypeConfiguration<Tabela1>
             .HasColumnName("id");
 
         builder
-            .Property(t => t.UserName)
-            .HasColumnName("username")
+            .Property(t => t.Produto)
+            .HasColumnName("produto")
             .HasColumnType("varchar(100)");
     }
 }

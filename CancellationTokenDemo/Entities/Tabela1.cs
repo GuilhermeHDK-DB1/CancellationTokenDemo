@@ -2,11 +2,11 @@ namespace CancellationTokenDemo.Entities;
 
 public class Tabela1
 {
-    public Tabela1(string userName)
+    public Tabela1(string produto)
     {
-        UserName = userName;
+        Produto = produto;
     }
 
     public int Id { get; set; }
-    public string UserName { get; set; }
+    public string Produto { get; set; }
 }
