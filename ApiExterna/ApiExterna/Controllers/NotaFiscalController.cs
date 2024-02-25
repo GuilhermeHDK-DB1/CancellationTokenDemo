@@ -19,18 +19,18 @@ public class NotaFiscalController : ControllerBase
     [HttpPost("CadastrarComCancellationToken")] // CancellationToken implementada de forma correta
     public async Task<IActionResult> CadastrarComCancellationToken(CancellationToken cancellationToken)
     {
-        _logger.LogInformation("Iniciando");
+        _logger.LogInformation("Task iniciada");
         await _notaFiscalService.CadastrarComCancellationToken(cancellationToken);
-        _logger.LogInformation("Finalizando");
+        _logger.LogInformation("Task finalizada com sucesso!");
         return Ok();
     }
     
     [HttpPost("CadastrarSemCancellationToken")] // CancellationToken implementada de forma incorreta // Não confiar em assinatura
     public async Task<IActionResult> CadastrarSemCancellationToken(CancellationToken cancellationToken) 
     {
-        _logger.LogInformation("Iniciando");
+        _logger.LogInformation("Task iniciada");
         await _notaFiscalService.CadastrarSemCancellationToken();
-        _logger.LogInformation("Finalizando");
+        _logger.LogInformation("Task finalizada com sucesso!");
         return Ok();
     }
 }

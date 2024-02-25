@@ -7,24 +7,24 @@ namespace CancellationTokenDemo.Controllers;
 
 [ApiController]
 [Route("[controller]")]
-public class HomeController : ControllerBase
+public class FinalizacaoDeCompraController : ControllerBase
 {
-    private readonly ILogger<HomeController> _logger;
+    private readonly ILogger<FinalizacaoDeCompraController> _logger;
     private readonly ApplicationDbContext _context;
 
-    public HomeController(ILogger<HomeController> logger, ApplicationDbContext context)
+    public FinalizacaoDeCompraController(ILogger<FinalizacaoDeCompraController> logger, ApplicationDbContext context)
     {
         _logger = logger;
         _context = context;
     }
     
     [HttpPost("CadastrarSemTransaction")] // Não funciona com cancellationToken
-    public async Task<IActionResult> RegisterWithoutTransaction(CancellationToken cancellationToken)
+    public async Task<IActionResult> CadastrarSemTransaction(CancellationToken cancellationToken)
     {
         _logger.LogInformation("Task iniciada");
         
-        var userName = $"User-{Guid.NewGuid()}";
-        _context.Tabela1.Add(new Tabela1(userName));
+        var produto = $"Produto-{Guid.NewGuid()}";
+        _context.Tabela1.Add(new Tabela1(produto));
         await _context.SaveChangesAsync(cancellationToken);
     
         await Task.Delay(2500, cancellationToken);
@@ -35,20 +35,21 @@ public class HomeController : ControllerBase
             tabela2 = new Tabela2();
             _context.Add(tabela2);
         }
-        tabela2.QuantidadeCadastrada++;
+        tabela2.QuantidadeFinalizada++;
         await _context.SaveChangesAsync(cancellationToken);
         
         _logger.LogInformation("Task finalizada com sucesso!");
     
-        return Ok(tabela2.QuantidadeCadastrada);
+        return Ok(tabela2.QuantidadeFinalizada);
     }
     
     [HttpPost("CadastrarComUnitOfWork")] // Funciona com cancellationToken
-    public async Task<IActionResult> RegisterWithUnitOfWork(CancellationToken cancellationToken)
+    public async Task<IActionResult> CadastrarComUnitOfWork(CancellationToken cancellationToken)
     {
         _logger.LogInformation("Task iniciada");
-        var userName = $"User-{Guid.NewGuid()}";
-        _context.Tabela1.Add(new Tabela1(userName));
+        
+        var produto = $"Produto-{Guid.NewGuid()}";
+        _context.Tabela1.Add(new Tabela1(produto));
 
         await Task.Delay(2500, cancellationToken);
 
@@ -58,20 +59,21 @@ public class HomeController : ControllerBase
             tabela2 = new Tabela2();
             _context.Add(tabela2);
         }
-        tabela2.QuantidadeCadastrada++;
+        tabela2.QuantidadeFinalizada++;
 
         await _context.SaveChangesAsync(cancellationToken);
         _logger.LogInformation("Task finalizada com sucesso!");
 
-        return Ok(tabela2.QuantidadeCadastrada);
+        return Ok(tabela2.QuantidadeFinalizada);
     }
     
     [HttpPost("CadastrarComCancellationToken")] // CancellationToken implementada de forma correta
     public async Task<IActionResult> CadastrarComCancellationToken(CancellationToken cancellationToken)
     {
         _logger.LogInformation("Task iniciada");
-        var userName = $"User-{Guid.NewGuid()}";
-        var tabela1 = new Tabela1(userName);
+        
+        var produto = $"Produto-{Guid.NewGuid()}";
+        var tabela1 = new Tabela1(produto);
 
         var httpClient = new HttpClient();
         string json = JsonSerializer.Serialize(tabela1);
@@ -86,20 +88,21 @@ public class HomeController : ControllerBase
             tabela2 = new Tabela2();
             _context.Add(tabela2);
         }
-        tabela2.QuantidadeCadastrada++;
+        tabela2.QuantidadeFinalizada++;
 
         await _context.SaveChangesAsync(cancellationToken);
         _logger.LogInformation("Task finalizada com sucesso!");
 
-        return Ok(tabela2.QuantidadeCadastrada);
+        return Ok(tabela2.QuantidadeFinalizada);
     }
     
     [HttpPost("CadastrarSemCancellationToken")] // CancellationToken implementada de forma incorreta // Não confiar em assinatura
     public async Task<IActionResult> CadastrarSemCancellationToken(CancellationToken cancellationToken) 
     {
         _logger.LogInformation("Task iniciada");
-        var userName = $"User-{Guid.NewGuid()}";
-        var tabela1 = new Tabela1(userName);
+        
+        var produto = $"Produto-{Guid.NewGuid()}";
+        var tabela1 = new Tabela1(produto);
 
         var httpClient = new HttpClient();
         string json = JsonSerializer.Serialize(tabela1);
@@ -114,11 +117,11 @@ public class HomeController : ControllerBase
             tabela2 = new Tabela2();
             _context.Add(tabela2);
         }
-        tabela2.QuantidadeCadastrada++;
+        tabela2.QuantidadeFinalizada++;
 
         await _context.SaveChangesAsync(cancellationToken);
         _logger.LogInformation("Task finalizada com sucesso!");
 
-        return Ok(tabela2.QuantidadeCadastrada);
+        return Ok(tabela2.QuantidadeFinalizada);
     }
 }
